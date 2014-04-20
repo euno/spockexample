@@ -9,36 +9,28 @@ class AgeCheckerSpec extends Specification {
 	def "#ageで#sexの場合に大人かどうかの判定で#resultが返る"() {
 		setup:
 		def sut = new AgeChecker()
-		def person = new Person()
-		person.setAge(age)
-		person.setSex(sex)
 
 		expect:
-		sut.isAdult(person) == result
+		sut.isAdult(new Person(sex, age)) == result
 
 		where:
 		age | sex || result
-		0  | "m" || false
-		19 | "m" || false
-		20 | "m" || true
-		0  | "f" || false
-		19 | "f" || false
-		20 | "f" || true
+		0   | "m" || false
+		19  | "m" || false
+		20  | "m" || true
+		0   | "f" || false
+		19  | "f" || false
+		20  | "f" || true
+		30  | "m" || false
 	}
 
 	@Unroll
-	def "#ageA,#sexAと#ageB,#sexBの場合に歳の差#resultが返る"() {
+	def "Aさん#ageA,#sexAとBさん#ageB,#sexBの歳の差#resultが返る"() {
 		setup:
 		def sut = new AgeChecker()
-		def personA = new Person()
-		personA.setAge(ageA)
-		personA.setSex(sexA)
-		def personB = new Person()
-		personB.setAge(ageB)
-		personB.setSex(sexB)
 
 		expect:
-		sut.getAgeDiff(personA, personB) == result
+		sut.getAgeDiff(new Person(sexA, ageA), new Person(sexB, ageB)) == result
 
 		where:
 		ageA | sexA | ageB | sexB || result

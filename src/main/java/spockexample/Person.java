@@ -6,6 +6,11 @@ public class Person {
 	/** 年齢 */
 	private int age;
 
+	public Person(String sex, int age) {
+		this.sex = sex;
+		this.age = age;
+	}
+
 	public String getSex() {
 		return sex;
 	}
