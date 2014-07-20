@@ -1,7 +1,7 @@
 package spockexample;
 
 /**
- * Created by yusuke on 2014/07/20.
+ * Created by euno7 on 2014/07/20.
  */
 public class CapacityCounter {
     private int count = 0;

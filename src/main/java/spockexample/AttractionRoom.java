@@ -1,8 +1,9 @@
 package spockexample;
 
 /**
- *
- * @author yusuke
+ * アトラクションに人を載せたり降ろしたりするクラス。
+ * 載せる人の年齢や性別によって、アトラクションのキャパシティを計算していく
+ * @author euno7
  */
 public class AttractionRoom {
 	private PersonChecker personChecker;
@@ -21,7 +22,7 @@ public class AttractionRoom {
     }
 
     /**
-	 * 女性でかつ大人であれば3ポイント、女性で子どもであれば1ポイントを加算する
+	 * 指定された人をアトラクションに追加する。
 	 * @param person
 	 */
 	public void add(Person person) {
@@ -41,6 +42,7 @@ public class AttractionRoom {
             add = 2;
         }
 
+        // この人を乗せるとキャパシティオーバーになる場合は例外をスロー
         if (capacityCounter.getCount() > (capacityLimit - add)) {
             throw new IllegalArgumentException("limit over");
         }
