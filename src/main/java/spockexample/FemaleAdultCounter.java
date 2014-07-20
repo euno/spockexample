@@ -10,30 +10,37 @@ public class FemaleAdultCounter {
 		this.ageChecker = ageChecker;
 	}
 
-	private int point = 0;
+    private SexChecker sexChecker;
+    public void setSexChecker(SexChecker sexChecker) {
+        this.sexChecker = sexChecker;
+    }
 
-	/**
+    private Counter counter;
+    public void setCounter(Counter counter) {
+        this.counter = counter;
+    }
+
+    /**
 	 * 女性でかつ大人であれば3ポイント、女性で子どもであれば1ポイントを加算する
 	 * @param person
 	 */
 	public void count(Person person) {
-		if (person.getSex().equals("m")) {
+        if (person == null) {
+            throw new IllegalArgumentException("nullは許可されていません");
+        }
+
+		if (sexChecker.isMale(person)) {
 			return;
 		}
 
 		if (ageChecker.isAdult(person)) {
-			addPoint(3);
+            counter.addCount(3);
 		}
 
-		addPoint(1);
-	}
-
-	private void addPoint(int c) {
-		this.point += c;
+		counter.addCount(1);
 	}
 
 	public int getPoint() {
-		return this.point;
+		return this.counter.getCount();
 	}
 }
-

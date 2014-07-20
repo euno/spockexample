@@ -21,8 +21,31 @@ class AgeCheckerSpec extends Specification {
 		0   | "f" || false
 		19  | "f" || false
 		20  | "f" || true
-		30  | "m" || false
+		30  | "m" || true
 	}
+
+    @Unroll
+    def "#ageで#sexの場合に大人かどうかの判定で#resultが返る2"() {
+        setup:
+        def sut = new AgeChecker()
+
+        when:
+        def person = new Person(sex, age);
+
+        then:
+        sut.isAdult(person) == result
+
+        where:
+        age | sex || result
+        0   | "m" || false
+        19  | "m" || false
+        20  | "m" || true
+        0   | "f" || false
+        19  | "f" || false
+        20  | "f" || true
+        30  | "m" || true
+    }
+
 
 	@Unroll
 	def "Aさん#ageA,#sexAとBさん#ageB,#sexBの歳の差#resultが返る"() {
