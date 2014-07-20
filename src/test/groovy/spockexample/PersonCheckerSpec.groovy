@@ -3,12 +3,12 @@ package spockexample
 import spock.lang.Specification
 import spock.lang.Unroll;
 
-class AgeCheckerSpec extends Specification {
+class PersonCheckerSpec extends Specification {
 
 	@Unroll
 	def "#ageで#sexの場合に大人かどうかの判定で#resultが返る"() {
 		setup:
-		def sut = new AgeChecker()
+		def sut = new PersonChecker()
 
 		expect:
 		sut.isAdult(new Person(sex, age)) == result
@@ -27,7 +27,7 @@ class AgeCheckerSpec extends Specification {
     @Unroll
     def "#ageで#sexの場合に大人かどうかの判定で#resultが返る2"() {
         setup:
-        def sut = new AgeChecker()
+        def sut = new PersonChecker()
 
         when:
         def person = new Person(sex, age);
@@ -50,7 +50,7 @@ class AgeCheckerSpec extends Specification {
 	@Unroll
 	def "Aさん#ageA,#sexAとBさん#ageB,#sexBの歳の差#resultが返る"() {
 		setup:
-		def sut = new AgeChecker()
+		def sut = new PersonChecker()
 
 		expect:
 		sut.getAgeDiff(new Person(sexA, ageA), new Person(sexB, ageB)) == result

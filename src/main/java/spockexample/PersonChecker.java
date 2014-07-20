@@ -1,6 +1,6 @@
 package spockexample;
 
-public class AgeChecker {
+public class PersonChecker {
 	/**
 	 * Personが大人(20歳以上)かどうかを返す
 	 * @param person
@@ -22,4 +22,13 @@ public class AgeChecker {
 		}
 		return personB.getAge() - personA.getAge();
 	}
+
+    /**
+     * 男性かどうかを判定する
+     * @param person
+     * @return
+     */
+    public boolean isMale(Person person) {
+        return "m".equals(person.getSex());
+    }
 }

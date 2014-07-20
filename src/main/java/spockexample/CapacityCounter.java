@@ -3,8 +3,11 @@ package spockexample;
 /**
  * Created by yusuke on 2014/07/20.
  */
-public class Counter {
+public class CapacityCounter {
     private int count = 0;
+
+    public CapacityCounter() {
+    }
 
     public void addCount(int count) {
         this.count += count;
