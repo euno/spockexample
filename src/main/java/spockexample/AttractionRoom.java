@@ -3,7 +3,6 @@ package spockexample;
 /**
  * アトラクションに人を載せたり降ろしたりするクラス。
  * 載せる人の年齢や性別によって、アトラクションのキャパシティを計算していく
- * @author euno7
  */
 public class AttractionRoom {
 	private PersonChecker personChecker;
@@ -23,11 +22,14 @@ public class AttractionRoom {
 
     /**
 	 * 指定された人をアトラクションに追加する。
-	 * @param person
+     * もし追加したらキャパシティオーバーになってしまう場合は、
+     * IllegalArgumentExceptionがスローされる
+	 * @param person 追加する人
+     * @throws java.lang.IllegalArgumentException 追加したらキャパシティオーバーになってしまう場合
 	 */
-	public void add(Person person) {
+	public void add(Person person) throws IllegalArgumentException {
         if (person == null) {
-            throw new IllegalArgumentException("nullは許可されていません");
+            throw new IllegalArgumentException("null is not acceptable.");
         }
 
         int add = 0;
@@ -50,6 +52,10 @@ public class AttractionRoom {
 		capacityCounter.addCount(add);
 	}
 
+    /**
+     * 現在までのキャパシティのカウントを返します。
+     * @return 現在までのキャパシティカウント
+     */
 	public int getCount() {
 		return this.capacityCounter.getCount();
     }

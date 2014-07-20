@@ -6,26 +6,25 @@ import spock.lang.Unroll;
 class PersonCheckerSpec extends Specification {
 
 	@Unroll
-	def "#ageで#sexの場合に大人かどうかの判定で#resultが返る"() {
-		setup:
-		def sut = new PersonChecker()
+    def "#age歳で性別が#sexの場合に大人かどうかの判定で#resultが返る"() {
+        setup:
+        def sut = new PersonChecker()
 
-		expect:
-		sut.isAdult(new Person(sex, age)) == result
+        expect:
+        sut.isAdult(new Person(sex, age)) == result
 
-		where:
-		age | sex || result
-		0   | "m" || false
-		19  | "m" || false
-		20  | "m" || true
-		0   | "f" || false
-		19  | "f" || false
-		20  | "f" || true
-		30  | "m" || true
-	}
+        where:
+        age | sex || result
+        0   | "m" || false
+        19  | "m" || false
+        20  | "m" || true
+        0   | "f" || false
+        19  | "f" || true
+        20  | "f" || false
+    }
 
     @Unroll
-    def "#ageで#sexの場合に大人かどうかの判定で#resultが返る2"() {
+    def "#age歳で性別が#sexの場合に大人かどうかの判定で#resultが返る2"() {
         setup:
         def sut = new PersonChecker()
 
@@ -46,19 +45,19 @@ class PersonCheckerSpec extends Specification {
         30  | "m" || true
     }
 
+    @Unroll
+    def "#age歳で性別が#sexの場合に、男性化どうかの判定で#resultが返る()"() {
+        setup:
+        def sut = new PersonChecker()
 
-	@Unroll
-	def "Aさん#ageA,#sexAとBさん#ageB,#sexBの歳の差#resultが返る"() {
-		setup:
-		def sut = new PersonChecker()
+        expect:
+        sut.isMale(new Person(sex, age)) == result
 
-		expect:
-		sut.getAgeDiff(new Person(sexA, ageA), new Person(sexB, ageB)) == result
-
-		where:
-		ageA | sexA | ageB | sexB || result
-		1    | "m"  | 20   | "m"  || 19
-		20   | "m"  | 20   | "m"  || 0
-		21   | "m"  | 20   | "m"  || 1
-	}
+        where:
+        age | sex || result
+        19  | "m" || true
+        20  | "m" || true
+        19  | "f" || false
+        20  | "f" || false
+    }
 }
